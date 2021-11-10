@@ -1,0 +1,17 @@
+{
+  "name": "bitcoin-exchange-server",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Server-side code for bitcoin exchange",
+  "author": "Scott Logic Ltd",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testURL": "http://localhost/"
+  }
+}
