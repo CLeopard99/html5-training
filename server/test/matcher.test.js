@@ -89,7 +89,7 @@ describe("Matcher", () => {
     };
     matcher.matchOrder(testOrder);
     expect(matcher.sellList).toEqual([]);
-    expect(matcher.buyList).toContainEqual({
+    expect(matcher.buyList).not.toContainEqual({
       account: "one",
       quantity: 20,
       price: 80,
