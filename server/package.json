@@ -9,9 +9,13 @@
   },
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "start": "ts-node api/api.js"
   },
   "jest": {
     "testURL": "http://localhost/"
+  },
+  "dependencies": {
+    "ts-node": "^10.4.0"
   }
 }

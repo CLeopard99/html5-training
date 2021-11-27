@@ -1,0 +1,179 @@
+/****Default background and text****/
+body {
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  background-color: black;
+  font-family: "Lato";
+  max-width: 100%;
+  text-align: center;
+  overflow-y: hidden;
+  color: white;
+}
+
+.app {
+  height: 100%;
+}
+
+/****Colours****/
+
+/****Header styles****/
+.header {
+  opacity: 0.9;
+  position: sticky;
+  top: 0;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  height: 80px;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 2px solid rgb(114, 109, 109);
+  padding: 0px;
+  margin: 0px;
+
+  .mintplinth {
+    font-size: 30px;
+    float: left;
+    margin: 25px 0px 0px 80px;
+  }
+}
+
+.footer {
+  opacity: 0.9;
+  position: sticky;
+  bottom: 0;
+  background-color: rgb(8, 8, 8);
+  color: white;
+  height: 30px;
+  width: 100%;
+  z-index: 1000;
+  border-top: 2px solid rgb(114, 109, 109);
+  padding: 0px;
+  margin: 0px;
+}
+
+.mainFlex {
+  display: flex;
+}
+
+.verticalFlex {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex: 7;
+}
+
+.sectionHeader {
+  font-size: 16px;
+  margin: 0px;
+  padding: 8px 0px;
+  background-color: #0e1f2c;
+  border-bottom: 1px solid rgb(114, 109, 109);
+}
+
+.orderColumn {
+  background-color: #0e1f2c;
+  padding: 0px;
+  border-right: 1px solid rgb(114, 109, 109);
+  flex: 2;
+}
+
+.historyBox {
+  background-color: black;
+  padding: 0px;
+  border-left: 1px solid rgb(114, 109, 109);
+  flex: 3;
+}
+
+.aggBox {
+  padding: 0px;
+  background-color: black;
+  flex: 1;
+}
+
+.privateBox {
+  background-color: black;
+  border-top: 1px solid rgb(114, 109, 109);
+  flex: 1;
+}
+
+label {
+  display: inline-block;
+}
+
+.switch-field {
+  padding: 40px;
+  display: flex;
+  margin-left: 15px;
+  margin-top: 20px;
+
+  input {
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  label {
+    width: 75px;
+    background-color: #f3f3f3;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    padding: 6px 14px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3),
+      0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+  }
+
+  :hover {
+    cursor: pointer;
+    background-color: rgb(203, 238, 243);
+  }
+
+  input:checked + label {
+    background-color: rgb(36, 202, 36);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  label:first-of-type {
+    border-radius: 4px 0 0 4px;
+  }
+
+  label:last-of-type {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.textInput {
+  width: 50%;
+  margin-left: 25%;
+
+  label {
+    margin-top: 20px;
+    font-size: 17px;
+  }
+
+  input {
+    margin-top: 10px;
+  }
+}
+
+.submit {
+  display: block;
+
+  background-color: rgb(241, 238, 238);
+  cursor: pointer;
+  
+  padding: 10px 25px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none; 
+  margin: auto; 
+  margin-top: 50px;
+
+  &:hover {
+    background-color: rgb(36, 202, 36);
+  }
+}
