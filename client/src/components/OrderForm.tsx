@@ -53,7 +53,7 @@ function OrderForm() {
           <label className="label">Price</label>
           <input type="number" name="price" onChange={handlePrice} />
         </div>
-        <input className="submit" type="submit" value="Submit" onClick={orderTest}/>
+        <input className="submit" type="submit" value="Submit" onClick={orderTest} />
       </form>
     </div>
   );

@@ -1,8 +1,12 @@
 import Header from "./components/Header";
 import OrderForm from "./components/OrderForm";
-import AggregatedOrders from "./components/AggregatedOrders";
 import PrivateOrders from "./components/PrivateOrders";
+import AggregatedOrders from "./components/AggregatedOrders";
+import BuyOrders from "./components/BuyOrders";
+import SellOrders from "./components/SellOrders";
+import Visualisations from "./components/Visualisations";
 import TradeHistory from "./components/TradeHistory";
+import Footer from "./components/Footer";
 // import { Counter } from './features/counter/Counter';
 
 function App() {
@@ -10,16 +14,31 @@ function App() {
     <div className="app" >
       <Header />
       <div className="mainFlex">
-        <OrderForm />
-        <div className="verticalFlex">
-        <AggregatedOrders/>
-        <PrivateOrders/>
-        </div>
-        <TradeHistory/>
-      </div>
-      <div className="footer">
         
-    </div>
+        <div className="columnOne">
+          <div className="rowOne">
+            <OrderForm />
+            <div className="publicOrders">
+              <AggregatedOrders />
+              <div className="listColumns">
+                <BuyOrders />
+                <SellOrders />
+              </div>
+            </div>
+          </div>
+
+          <div className="rowTwo">
+            <PrivateOrders />
+            <Visualisations />
+          </div>
+        </div>
+
+        <div className="columnTwo">
+          <TradeHistory />
+        </div>
+
+      </div>
+      <Footer />
     </div>
   );
 }
