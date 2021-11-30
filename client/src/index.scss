@@ -15,11 +15,15 @@ body {
   height: 100%;
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
 /****Colours****/
 
 /****Header styles****/
 .header {
-  opacity: 0.9;
   position: sticky;
   top: 0;
   background-color: rgb(8, 8, 8);
@@ -51,7 +55,6 @@ body {
   padding: 0px 15px;
   margin: 0px;
   text-align: left;
-
 }
 
 .mainFlex {
@@ -83,12 +86,10 @@ body {
   flex: 1;
 }
 
-
 .publicOrders {
   display: flex;
   flex-direction: row;
   flex: 3;
-
 }
 
 .sectionHeader {
@@ -142,7 +143,7 @@ label {
     background-color: rgb(203, 238, 243);
   }
 
-  input:checked+label {
+  input:checked + label {
     background-color: rgb(36, 202, 36);
     box-shadow: none;
   }
@@ -159,7 +160,6 @@ label {
 .textInput {
   margin: auto;
   justify-content: center;
-
 
   label {
     display: block;
@@ -195,7 +195,7 @@ label {
 
 .aggBox {
   padding: 0px;
-  flex: 3;
+  flex: 4;
 }
 
 .listColumns {
@@ -208,6 +208,10 @@ label {
   flex: 1;
   border-left: 1px solid rgb(114, 109, 109);
 
+  p {
+  text-align: left;
+  margin: 10px 0px 10px 30px;
+  }
 }
 
 .sellBox {
@@ -215,14 +219,21 @@ label {
   border-left: 1px solid rgb(114, 109, 109);
   border-top: 1px solid rgb(114, 109, 109);
 
+  p {
+  text-align: left;
+  margin: 10px 0px 10px 30px;
+  }
+}
 
+.orderList {
+  list-style: none;
+  margin-top: 3px;
 }
 
 .visualisations {
   padding: 0px;
   flex: 3;
   border-top: 1px solid rgb(114, 109, 109);
-
 }
 
 .historyBox {
@@ -233,10 +244,34 @@ label {
   width: 100%;
 }
 
-.testButton {
-  width: 70px;
-  height: 20px;
-  background-color: white;
-  color: black;
-  cursor: pointer;
+.headerLine {
+  height: 1px;
+  border-top: 1px solid rgb(114, 109, 109);
 }
+
+.redFloat {
+  float: left;
+  color: red;
+}
+
+.greenFloat {
+  float: left;
+  color: green;
+}
+
+.aggLists {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.aggBuy {
+  flex: 1;
+  border-right: 1px solid rgb(114, 109, 109);
+}
+
+.aggSell {
+  flex: 1;
+}
+

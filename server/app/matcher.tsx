@@ -1,12 +1,11 @@
 
-
-class Order {
+export class Order {
     account : string;
     quantity: number;
     price : number;
     action : "buy" | "sell";
 
-    constructor(account , quantity , price , action) {
+    constructor(account: string, quantity: number, price: number, action: "buy" | "sell") {
         this.account = account;
         this.quantity = quantity;
         this.price = price;
@@ -16,19 +15,22 @@ class Order {
 
 class Matcher {
 
+  constructor() {}
+
   // existing orders and matched orders
   sellList : Order[]= [
     { account: "one", quantity: 10, price: 30, action: "sell" },
-    { account: "two", quantity: 20, price: 50, action: "sell" },
-    { account: "one", quantity: 10, price: 30, action: "sell" },
-    { account: "two", quantity: 20, price: 50, action: "sell" },
+    { account: "two", quantity: 20, price: 30, action: "sell" },
+    { account: "three", quantity: 10, price: 50, action: "sell" },
+    { account: "four", quantity: 20, price: 50, action: "sell" },
   ];
 
   buyList : Order[] = [
-    { account: "three", quantity: 20, price: 50, action: "buy" },
-    { account: "four", quantity: 10, price: 80, action: "buy" },
-    { account: "three", quantity: 20, price: 50, action: "buy" },
-    { account: "four", quantity: 10, price: 80, action: "buy" },
+    { account: "five", quantity: 20, price: 80, action: "buy" },
+    { account: "six", quantity: 10, price: 80, action: "buy" },
+    { account: "seven", quantity: 20, price: 50, action: "buy" },
+    { account: "eight", quantity: 10, price: 50, action: "buy" },
+    
   ];
   tradeList : [Order, Order][] = []; //{Order, Order}
   // orders aggregated by price
@@ -105,6 +107,7 @@ class Matcher {
 
   // add quantities of same price together
   aggregateList(list : Order[]) {
+  //  console.log("1st: " + this.buyList);
     let aggList = [];
     let alist = list;
     for (let i = 0; i < alist.length; i++) { 
@@ -119,6 +122,8 @@ class Matcher {
      
       aggList.push(alist[i]);
     }
+    //console.log(this.buyList);
+
     return aggList;
   }
 }
@@ -128,4 +133,4 @@ class Matcher {
 // matcher = new Matcher();
 // matcher.matchOrder(orderOne);
 
-module.exports = Matcher;
+export default Matcher;

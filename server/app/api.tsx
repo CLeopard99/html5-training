@@ -1,10 +1,10 @@
 var express = require("express");
 var app = express();
 app.use(express.json());
-const Matcher = require("./matcher");
-matcher = new Matcher();
+const Matcher = require("./matcher").default;
+console.log(Matcher)
+const matcher = new Matcher();
 const port = 3001;
-
 
 app.use((req, res, next) => {  
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
