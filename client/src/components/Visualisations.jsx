@@ -36,8 +36,8 @@ function Visualisations() {
     }
   }, [sellData]);
 
-  // for buy: orders at that price or more - get buy, sort by price ascending, if price above is more, add quantity to current, if same then add quantity and remove element
-  // for sell: orders at that price or less
+  //  for buy: orders at that price or more - get buy, sort by price ascending, if price above is more, add quantity to current, if same then add quantity and remove element
+  //  for sell: orders at that price or less
 
   buyData.sort(function (a, b) {
     return a.price > b.price ? 1 : -1;
@@ -49,32 +49,35 @@ function Visualisations() {
   const buyCumul = [];
   const sellCumul = [];
 
-  for (let i = 0; i < buyData.length; i++) {
-    buyData[i] = JSON.parse(JSON.stringify(buyData[i]));
-    for (var j = i + 1; j < buyData.length; j++) {
-      if (buyData[i].price <= buyData[j].price) {
-        buyData[i].quantity += buyData[j].quantity;
-        if (buyData[i].price == buyData[j].price) {
-          buyData.splice(j, 1);
+  let tempData = [...buyData];
+  for (let i = 0; i < tempData.length; i++) {
+    tempData[i] = JSON.parse(JSON.stringify(tempData[i]));
+    for (var j = i + 1; j < tempData.length; j++) {
+      if (tempData[i].price <= tempData[j].price) {
+        tempData[i].quantity += tempData[j].quantity;
+        if (tempData[i].price == tempData[j].price) {
+          tempData.splice(j, 1);
           j = j - 1;
         }
       }
     }
-    buyCumul.push({ price: buyData[i].price, quantity: buyData[i].quantity });
+    buyCumul.push({ price: tempData[i].price, quantity: tempData[i].quantity });
   }
 
-  for (let i = 0; i < sellData.length; i++) {
-    sellData[i] = JSON.parse(JSON.stringify(sellData[i]));
-    for (var j = i + 1; j < sellData.length; j++) {
-      if (sellData[i].price >= sellData[j].price) {
-        sellData[i].quantity += sellData[j].quantity;
-        if (sellData[i].price == sellData[j].price) {
-          sellData.splice(j, 1);
+  
+tempData = [...sellData];
+  for (let i = 0; i < tempData.length; i++) {
+    tempData[i] = JSON.parse(JSON.stringify(tempData[i]));
+    for (var j = i + 1; j < tempData.length; j++) {
+      if (tempData[i].price >= tempData[j].price) {
+        tempData[i].quantity += tempData[j].quantity;
+        if (tempData[i].price == tempData[j].price) {
+          tempData.splice(j, 1);
           j = j - 1;
         }
       }
     }
-    sellCumul.push({ price: sellData[i].price, quantity: sellData[i].quantity });
+    sellCumul.push({ price: tempData[i].price, quantity: tempData[i].quantity });
   }
 
 
@@ -183,11 +186,26 @@ function Visualisations() {
       .text("Quantity");
   }
 
+  const listOrders =
+    sellCumul != null ? (
+      sellCumul.map((order) => (
+        <li className="orderList" key={order.account}>
+          <div className="redFloat">
+            {order.price +
+              "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0"}
+          </div>
+          {order.quantity}
+        </li>
+      ))
+    ) : (
+      <p>No orders to show</p>
+    );
+
   return (
     <div className="visualisations">
       <h2 className="sectionHeader">Graphs</h2>
       <div className="d3Chart">
-        {/* <svg
+        <svg
           ref={svgRef}
           viewBox="0 0 1000 1000"
           style={{
@@ -195,7 +213,8 @@ function Visualisations() {
             height: "100%",
             padding: "10px",
           }}
-        /> */}
+        />
+        {/* <p>{listOrders}</p> */}
       </div>
     </div>
   );

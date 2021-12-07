@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import Select from "react-select";
+//import Select from "react-select";
 import OrderForm from "./components/OrderForm";
 import PrivateOrders from "./components/PrivateOrders";
 import AggregatedOrders from "./components/AggregatedOrders";
@@ -41,12 +41,12 @@ function App() {
           value={logStatus}
           onClick={handleLogin}
         />
-        <Select
+        {/* <Select
           value={accountSelected}
           className="accountSelect"
           options={options}
           onChange={handleAccountSelect}
-        />
+        /> */}
       </div>
 
       <div className="mainFlex">
