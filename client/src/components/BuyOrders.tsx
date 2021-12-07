@@ -15,12 +15,19 @@ function BuyOrders() {
     } catch (err: any) {
       setGetResult(err.message);
     }
-  });
+  }, [getResult]);
 
-  //  const result = getResult != null ? getResult.length : 0;
   const listOrders =
     getResult != null ? (
-      getResult.map((order) => <li className="orderList" key={order.account}><div className="redFloat">{order.price + "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0"}</div>{order.quantity}</li>)
+      getResult.map((order) => (
+        <li className="orderList" key={order.account}>
+          <div className="redFloat">
+            {order.price +
+              "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0"}
+          </div>
+          {order.quantity}
+        </li>
+      ))
     ) : (
       <p>No orders to show</p>
     );
@@ -28,10 +35,12 @@ function BuyOrders() {
   return (
     <div className="buyBox">
       <h2 className="sectionHeader">Buy Orders</h2>
-     
-      <p>{"Price \u00a0\u00a0\u00a0\u00a0 Quantity"}</p> 
-      <div className="headerLine"/>
-      <p> {listOrders}</p>
+
+      <p>{"Price \u00a0\u00a0\u00a0\u00a0 Quantity"}</p>
+      <div className="headerLine" />
+      <div className="scroll">
+        <p> {listOrders}</p>
+      </div>
     </div>
   );
 }

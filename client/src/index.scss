@@ -3,11 +3,12 @@ body {
   margin: 0px;
   padding: 0px;
   font-size: 16px;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   font-family: "Lato";
   max-width: 100%;
   text-align: center;
   overflow-y: hidden;
+  overflow-x: hidden;
   color: white;
 }
 
@@ -20,20 +21,30 @@ body {
   justify-content: center;
 }
 
+.scroll {
+  overflow-y: scroll;
+  width: 100%;
+}
+
 /****Colours****/
+$navy: #142f44;
+$grey: rgb(114, 109, 109);
+$light-grey: #f3f3f3;
+$neon-green: rgb(36, 202, 36);
 
 /****Header styles****/
 .header {
   position: sticky;
   top: 0;
-  background-color: rgb(8, 8, 8);
+  background-color: black;
   color: white;
   height: 80px;
   width: 100%;
   z-index: 1000;
-  border-bottom: 2px solid rgb(114, 109, 109);
+  border-bottom: 3px solid $grey;
   padding: 0px;
   margin: 0px;
+  
 
   .mintplinth {
     font-size: 30px;
@@ -42,8 +53,27 @@ body {
   }
 }
 
+.accountSelect {
+  width: 120px;
+  height: 30px;
+  font-size: 14px;
+  float: right;
+  margin: 20px 30px 0px 0px;
+  color: black;
+}
+
+.accountSubmit {
+  float: right;
+  width: 70px;
+  height: 30px;
+  margin-top: 25px;
+  margin-right: 50px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+}
+
 .footer {
-  opacity: 0.9;
   position: sticky;
   bottom: 0;
   background-color: rgb(8, 8, 8);
@@ -51,7 +81,7 @@ body {
   height: 30px;
   width: 100%;
   z-index: 1000;
-  border-top: 2px solid rgb(114, 109, 109);
+  border-top: 2px solid $grey;
   padding: 0px 15px;
   margin: 0px;
   text-align: left;
@@ -60,12 +90,15 @@ body {
 .mainFlex {
   display: flex;
   flex-direction: row;
+  border-top: 1px solid $grey;
+
 }
 
 .rowOne {
   display: flex;
   flex-direction: row;
-  flex: 4;
+ // flex: 4;
+  height: 400px;
 }
 
 .rowTwo {
@@ -96,16 +129,16 @@ body {
   font-size: 16px;
   margin: 0px;
   padding: 8px 0px;
-  background-color: #0e1f2c;
-  border-bottom: 1px solid rgb(114, 109, 109);
+  background-color: $navy;
+  border-bottom: 1px solid $grey;
 }
 
 /******* New order styles *******/
 
 .orderColumn {
-  background-color: #0e1f2c;
+  background-color: $navy;
   padding: 0px;
-  border-right: 1px solid rgb(114, 109, 109);
+  border-right: 1px solid $grey;
   flex: 1;
 }
 
@@ -129,7 +162,7 @@ label {
 
   label {
     width: 20%;
-    background-color: #f3f3f3;
+    background-color: $light-grey;
     color: black;
     text-align: center;
     padding: 6px 14px;
@@ -144,7 +177,7 @@ label {
   }
 
   input:checked + label {
-    background-color: rgb(36, 202, 36);
+    background-color: $neon-green;
     box-shadow: none;
   }
 
@@ -173,23 +206,24 @@ label {
 }
 
 .submit {
-  background-color: rgb(241, 238, 238);
+  background-color: $light-grey;
   cursor: pointer;
   padding: 10px 25px;
   color: black;
   font-weight: bold;
   text-decoration: none;
   margin: 30px auto;
+  border-radius: 5px;
 
   &:hover {
-    background-color: rgb(36, 202, 36);
+    background-color: $neon-green;
   }
 }
 
 .privateBox {
   background-color: black;
-  border-right: 1px solid rgb(114, 109, 109);
-  border-top: 1px solid rgb(114, 109, 109);
+  border-right: 1px solid $grey;
+  border-top: 1px solid $grey;
   flex: 1;
 }
 
@@ -206,22 +240,25 @@ label {
 
 .buyBox {
   flex: 1;
-  border-left: 1px solid rgb(114, 109, 109);
+  border-left: 1px solid $grey;
+  overflow-y: hidden;
+
 
   p {
-  text-align: left;
-  margin: 10px 0px 10px 30px;
+    text-align: left;
+    margin: 10px 0px 10px 30px;
   }
 }
 
 .sellBox {
   flex: 1;
-  border-left: 1px solid rgb(114, 109, 109);
-  border-top: 1px solid rgb(114, 109, 109);
+  border-left: 1px solid $grey;
+  border-top: 1px solid $grey;
+  overflow-y: hidden;
 
   p {
-  text-align: left;
-  margin: 10px 0px 10px 30px;
+    text-align: left;
+    margin: 10px 0px 10px 30px;
   }
 }
 
@@ -233,20 +270,26 @@ label {
 .visualisations {
   padding: 0px;
   flex: 3;
-  border-top: 1px solid rgb(114, 109, 109);
+  border-top: 1px solid $grey;
 }
 
 .historyBox {
   background-color: black;
   padding: 0px;
-  border-left: 1px solid rgb(114, 109, 109);
+  border-left: 1px solid $grey;
   height: 100%;
   width: 100%;
+  //overflow-y: scroll;
+  overflow-y: hidden;
+
+  .sectionHeader {
+    margin-bottom: 10px;
+  }
 }
 
 .headerLine {
   height: 1px;
-  border-top: 1px solid rgb(114, 109, 109);
+  border-top: 1px solid $grey;
 }
 
 .redFloat {
@@ -268,10 +311,67 @@ label {
 
 .aggBuy {
   flex: 1;
-  border-right: 1px solid rgb(114, 109, 109);
+  border-right: 1px solid $grey;
+  overflow-y: hidden;
+
+
 }
 
 .aggSell {
   flex: 1;
+  overflow-y: hidden;
+
 }
 
+table {
+  width: 100%;
+  
+  th {
+  width: 15%;
+}
+
+  td {
+    width: 30%;
+  }
+}
+
+.tableHeader {
+  margin-bottom: 10px;
+}
+
+.loginToView {
+  width: 100%;
+}
+
+.d3Chart {
+  width: 1000px;
+  height: 420px;
+}
+
+.randomOrders {
+  margin-top: 0px;
+}
+
+.randomNumber {
+  width: 50px;
+  height:20px;
+  margin-right: 20px;
+  margin-top: 0px;
+}
+
+
+.randomSubmit {
+  background-color: $light-grey;
+  cursor: pointer;
+  padding: 10px 25px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 20px auto;
+  margin-top: 0px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $neon-green;
+  }
+}

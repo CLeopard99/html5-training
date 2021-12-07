@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Order } from "../../../server/app/matcher";
 
-function AggregatedOrders() {
+function AggSell() {
   const [getResult, setGetResult] = useState<Order[] | null>(null);
   const url = "http://localhost:3001/aggregateSell";
 
@@ -15,7 +15,7 @@ function AggregatedOrders() {
     } catch (err: any) {
       setGetResult(err.message);
     }
-  });
+  }, [getResult]);
 
   const listOrders =
     getResult != null ? (
@@ -40,9 +40,11 @@ function AggregatedOrders() {
       <div className="headerLine" />
 
       <p>{"Price \u00a0\u00a0\u00a0\u00a0 Quantity"}</p>
-      <p> {listOrders}</p>
+      <div className="scroll">
+        <p> {listOrders}</p>
+      </div>
     </div>
   );
 }
 
-export default AggregatedOrders;
+export default AggSell;

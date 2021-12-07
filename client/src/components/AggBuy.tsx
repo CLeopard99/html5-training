@@ -10,14 +10,12 @@ function AggBuy() {
       fetch(url)
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           setGetResult(res);
-          console.log(getResult);
         });
     } catch (err: any) {
       setGetResult(err.message);
     }
-  });
+}, [getResult]);
 
   const listOrders =
     getResult != null ? (
@@ -42,7 +40,10 @@ function AggBuy() {
       <div className="headerLine" />
 
       <p>{"Price \u00a0\u00a0\u00a0\u00a0 Quantity"}</p>
+      <div className="scroll">
+
       <p> {listOrders}</p>
+      </div>
     </div>
   );
 }
