@@ -31,7 +31,7 @@ function OrderForm(props: any) {
       body: JSON.stringify(body),
     };
     //alert(JSON.stringify(body));
-    fetch("http://localhost:3001/newtrade", requestOptions).then((response) =>
+    fetch("http://localhost:3001/neworder", requestOptions).then((response) =>
       response.json()
     );
   };
@@ -45,7 +45,7 @@ function OrderForm(props: any) {
         body: JSON.stringify(body),
       };
       //alert(JSON.stringify(body));
-      fetch("http://localhost:3001/newtrade", requestOptions).then((response) =>
+      fetch("http://localhost:3001/neworder", requestOptions).then((response) =>
         response.json()
       );
     }
@@ -114,7 +114,7 @@ function OrderGenerator() {
   const action = actions[Math.floor(Math.random() * actions.length)];
   const account = "Account " + Math.round(Math.random() * (5 - 1 - 1) + 1);
   const quantity =  Math.round(Math.random() * (50 - 1 - 1) + 1);
-  const price =  Math.round(Math.random() * (100 - 1 - 1) + 1);
+  const price =  Math.round(Math.random() * (50 - 1 - 1) + 1);
 
   const order = {
     "account": account,

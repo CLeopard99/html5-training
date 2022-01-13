@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Order } from "../../../server/app/matcher";
+import { io } from "socket.io-client";
+const socket = io("ws://localhost:8080");
 
 function BuyOrders() {
   const [getResult, setGetResult] = useState<Order[] | null>(null);
-  const url = "http://localhost:3001/buydata";
 
   useEffect(() => {
-    try {
-      fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          setGetResult(res);
-        });
-    } catch (err: any) {
-      setGetResult(err.message);
-    }
+    socket.emit("buydata");
+    socket.on("buydataReply", (data) => {
+      setGetResult(data);
+    });
   }, [getResult]);
 
   const listOrders =

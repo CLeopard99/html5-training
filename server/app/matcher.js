@@ -27,10 +27,10 @@ var Matcher = /** @class */ (function () {
   function Matcher() {
     // existing orders and matched orders
     this.sellList = [
-
+      { account: "four", quantity: 30, price: 60, action: "Sell" },
     ];
     this.buyList = [
- 
+      { account: "four", quantity: 20, price: 30, action: "Buy" },
     ];
     this.tradeList = []; //{Order, Order}
     // orders aggregated by price

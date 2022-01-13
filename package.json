@@ -3,6 +3,8 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "sass": "^1.43.4",
+    "socket.io": "^4.4.0",
+    "socket.io-server": "^1.0.0-b",
     "ts-node": "^10.4.0"
   }
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Header from "./components/Header";
-//import Select from "react-select";
+import Select from "react-select";
 import OrderForm from "./components/OrderForm";
 import PrivateOrders from "./components/PrivateOrders";
 import AggregatedOrders from "./components/AggregatedOrders";
@@ -9,6 +8,9 @@ import SellOrders from "./components/SellOrders";
 import Visualisations from "./components/Visualisations";
 import TradeHistory from "./components/TradeHistory";
 import Footer from "./components/Footer";
+import { io } from "socket.io-client";
+
+const socket = io("ws://localhost:3000");
 
 function App() {
   const options = [
@@ -41,12 +43,12 @@ function App() {
           value={logStatus}
           onClick={handleLogin}
         />
-        {/* <Select
+        <Select
           value={accountSelected}
           className="accountSelect"
           options={options}
           onChange={handleAccountSelect}
-        /> */}
+        />
       </div>
 
       <div className="mainFlex">

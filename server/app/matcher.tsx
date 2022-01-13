@@ -18,20 +18,19 @@ export class Order {
 }
 
 class Matcher {
-
   // existing orders and matched orders
   sellList: Order[] = [
     { account: "Account 1", quantity: 10, price: 30, action: "Sell" },
     { account: "Account 1", quantity: 20, price: 30, action: "Sell" },
-     { account: "Account 2", quantity: 10, price: 50, action: "Sell" },
-     { account: "Account 3", quantity: 20, price: 50, action: "Sell" },
+    { account: "Account 2", quantity: 10, price: 50, action: "Sell" },
+    { account: "Account 3", quantity: 20, price: 50, action: "Sell" },
   ];
 
   buyList: Order[] = [
     { account: "Account 1", quantity: 20, price: 80, action: "Buy" },
     { account: "Account 2", quantity: 10, price: 80, action: "Buy" },
     { account: "Account 2", quantity: 20, price: 50, action: "Buy" },
-    { account: "Account 3", quantity: 10, price: 50, action: "Buy" }, 
+    { account: "Account 3", quantity: 10, price: 50, action: "Buy" },
   ];
 
   tradeList: [Order, Order][] = []; //{Order, Order}
@@ -82,7 +81,7 @@ class Matcher {
       currentOrder.quantity = Math.abs(
         currentOrder.quantity - matchedOrder.quantity
       );
-      console.log("Order partially fulfiled, searching for another match.");
+      console.log("Order partially fulfilled, searching for another match.");
       this.matchOrder(currentOrder);
     }
 
@@ -94,38 +93,55 @@ class Matcher {
     if (order.action == "Buy") {
       console.log("Buy order list updated");
       this.buyList.push(order);
-      this.buyList.sort((a, b) => (a.price <= b.price ? 1 : -1));
-    } else {
+      this.buyList.sort(function (a, b) {
+        return a.price < b.price ? 1 : -1;
+      });
+      this.aggregatedBuyData = this.aggregateList(this.buyList);
+    } else if (order.action == "Sell") {
       console.log("Sell order list updated");
       this.sellList.push(order);
-      this.sellList.sort((a, b) => (a.price >= b.price ? 1 : -1));
+      this.sellList.sort(function (a, b) {
+        return a.price > b.price ? 1 : -1;
+      });
+      this.aggregatedSellData = this.aggregateList(this.sellList);
     }
-    this.aggregatedBuyData = this.aggregateList(this.buyList);
-    this.aggregatedSellData = this.aggregateList(this.sellList);
   }
 
   // add quantities of same price together
   aggregateList(list: Order[]) {
     var aggList = [];
     var alist = [...list];
-    if ((alist[0].account = "sell")) alist.reverse();
-
-    for (var i = 0; i < alist.length; i++) {
-      //delete alist[i].account;
-      alist[i] = JSON.parse(JSON.stringify(alist[i]));
-      for (var j = i + 1; j < alist.length; j++) {
-        if (alist[i].price >= alist[j].price) {
-          alist[i].quantity += alist[j].quantity;
-          if (alist[i].price == alist[j].price) {
-            alist.splice(j, 1);
-            j = j - 1;
+    if (alist[0].action == "Sell") {
+      for (var i = 0; i < alist.length; i++) {
+        //delete alist[i].account;
+        alist[i] = JSON.parse(JSON.stringify(alist[i]));
+        for (var j = i + 1; j < alist.length; j++) {
+          if (alist[i].price <= alist[j].price) {
+            alist[i].quantity += alist[j].quantity;
+            if (alist[i].price == alist[j].price) {
+              alist.splice(j, 1);
+              j = j - 1;
+            }
           }
         }
+        aggList.push(alist[i]);
       }
-      aggList.push(alist[i]);
+    } else {
+      for (var i = 0; i < alist.length; i++) {
+        //delete alist[i].account;
+        alist[i] = JSON.parse(JSON.stringify(alist[i]));
+        for (var j = i + 1; j < alist.length; j++) {
+          if (alist[i].price >= alist[j].price) {
+            alist[i].quantity += alist[j].quantity;
+            if (alist[i].price == alist[j].price) {
+              alist.splice(j, 1);
+              j = j - 1;
+            }
+          }
+        }
+        aggList.push(alist[i]);
+      }
     }
-    if ((aggList[0].account = "sell")) aggList.reverse();
-
     return aggList;
   }
 }

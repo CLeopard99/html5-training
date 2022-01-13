@@ -1,16 +1,32 @@
 import * as d3 from "d3";
 import { useCallback, useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
+const socket = io("ws://localhost:8080");
 
 function Visualisations() {
   const [buyData, setBuyData] = useState([
-    { account: "default", quantity: 1, price: 1, action: "Buy" },
   ]);
   const [sellData, setSellData] = useState([
-    { account: "default", quantity: 1, price: 1, action: "Sell" },
   ]);
 
   const urlBuy = "http://localhost:3001/buydata";
   const urlSell = "http://localhost:3001/selldata";
+
+  useEffect(() => {
+    socket.emit("buydata");
+    socket.on("buydataReply", (data) => {
+      setBuyData(data);
+    });
+  
+  }, [buyData]);
+
+  useEffect(() => {
+    socket.emit("selldata");
+    socket.on("selldataReply", (data) => {
+      setSellData(data);
+    });
+  }, [sellData]);
+
 
   useEffect(() => {
     try {
@@ -214,7 +230,6 @@ tempData = [...sellData];
             padding: "10px",
           }}
         />
-        {/* <p>{listOrders}</p> */}
       </div>
     </div>
   );
